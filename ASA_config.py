@@ -10,13 +10,15 @@ DEVICES_IP = file.read().split('\n')
 print(DEVICES_IP)
 
 for line in DEVICES_IP:
-    ip_address = line.strip();
+    ip_address = line.strip()
     print(ip_address)
     device = {
         'device_type': 'cisco_asa',
         'ip': ip_address,
         'username': USER,
         'password': PASSWORD,
+        'secret': ENABLE_PASS,
         'port': 22,
     }
+    net_connect = ConnectHandler(**device)
 
