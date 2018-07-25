@@ -21,4 +21,7 @@ for line in DEVICES_IP:
         'port': 22,
     }
     net_connect = ConnectHandler(**device)
-
+    output = net_connect.send_command('show access-list in_Factory | i deny ip any any')
+    hostname = net_connect.send_command('show version')
+    print(hostname, output)
+    net_connect.disconnect()
