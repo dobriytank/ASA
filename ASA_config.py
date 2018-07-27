@@ -9,10 +9,11 @@ ENABLE_PASS = getpass.getpass(prompt='Enter enable password: ')
 DEVICES_IP = file.read().split('\n')
 print(DEVICES_IP)
 file.close()
+result = open('result', 'w')
 
 for line in DEVICES_IP:
     ip_address = line.strip()
-    print(ip_address)
+ #   print(ip_address)
     device = {
         'device_type': 'cisco_asa',
         'ip': ip_address,
@@ -22,16 +23,19 @@ for line in DEVICES_IP:
         'port': 22,
     }
     net_connect = ConnectHandler(**device)
-    net_connect.config_mode()
-    output = net_connect.send_command('show run | i access-group in_ Office')
+#    net_connect.config_mode()
+    output = net_connect.send_command('show run | i access11111')
     hostname = net_connect.send_command('show hostname')
+
     if output!="":
-        print(hostname, output)
+        print(hostname, ip_address, output)
+        result.write(hostname + ip_address+'\n' + output+'\n')
     else:
         print(hostname, 'No such string')
+        result.write(hostname + 'No such string'+'\n')
     net_connect.disconnect()
 
-
+result.close()
 #def write_to_file(multiple, output_file, input_parse, input_names, input_objects, input_object_groups,
  #                     input_access_lists, input_object_nat, input_static_nat, ip_address):
 #
