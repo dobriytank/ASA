@@ -1,5 +1,6 @@
 from netmiko import ConnectHandler
 import getpass
+import time
 import sys
 file = open('IP', 'r')
 
@@ -23,8 +24,9 @@ for line in DEVICES_IP:
         'port': 22,
     }
     net_connect = ConnectHandler(**device)
+#    time.sleep(3)
 #    net_connect.config_mode()
-    output = net_connect.send_command('show run | i access11111')
+    output = net_connect.send_command('show run | i access-group in_Office')
     hostname = net_connect.send_command('show hostname')
 
     if output!="":
