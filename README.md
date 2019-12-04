@@ -1,1 +1,1 @@
-Sample scrypt to bulk configuration of Cisco ASAs
+Sample script for bulk configuration on Cisco ASAs
